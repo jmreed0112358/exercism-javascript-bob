@@ -1,4 +1,6 @@
 var Bob = require('./bob.js');
+var NotImplementedException = require('./exceptions/NotImplementedException.js');
+var InvalidParameterException = require('./exceptions/InvalidParameterException.js');
 
 describe('Bob', function() {
   var bob = new Bob();
