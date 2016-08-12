@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jmreed0112358/exercism-javascript-bob#readme",
   "dependencies": {
-    "validator": "^5.5.0"
+    "validator": "^5.5.0",
+    "xregexp": "^3.1.1"
   }
 }
