@@ -2,7 +2,7 @@ var Bob = require('./bob.js');
 var NotImplementedException = require('./exceptions/NotImplementedException.js');
 var InvalidParameterException = require('./exceptions/InvalidParameterException.js');
 
-xdescribe('Bob', function() {
+describe('Bob', function() {
   var bob = new Bob();
 
   it('throws exception when given junk input.', function() {
@@ -76,7 +76,7 @@ xdescribe('Bob', function() {
 
   it('Shouting with unicode characters.', function() {
     var result = bob.hey('Iñtërnâtiônàlizætiøn☃💩');
-    expect(result).toEqual('Whatever');
+    expect(result).toEqual('Whatever.');
   });
 
   it('calmly speaking about umlauts', function() {
