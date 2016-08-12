@@ -1,10 +1,10 @@
 var validator = require('validator');
-
+var xregexp = require('xregexp');
 var NotImplementedException = require('./exceptions/NotImplementedException.js');
 var InvalidParameterException = require('./exceptions/InvalidParameterException.js');
 
 /* Response Constants. */
-const QUESTION_RESPONSE = 'Sure';
+const QUESTION_RESPONSE = 'Sure.';
 const YELLING_RESPONSE = 'Whoa, chill out!';
 const SILENCE_RESPONSE = 'Fine. Be that way!';
 const DEFAULT_RESPONSE = 'Whatever.';
@@ -49,7 +49,7 @@ Bob.prototype.isQuestion = function(sentence) {
 	var length = 0,
 		i = 0;
 
-	length = string.length;
+	length = sentence.length;
 	if (length === 0) {
 		return false;
 	}
@@ -58,7 +58,30 @@ Bob.prototype.isQuestion = function(sentence) {
 };
 
 Bob.prototype.isYelling = function(sentence) {
-	throw new NotImplementedException();
+	var length = 0,
+		i = 0,
+		numAlpha = 0,
+		char = '',
+		unicodeword;
+
+	length = sentence.length;
+	if (length === 0) {
+		return false;
+	}
+
+	unicodeword = xregexp('^\\pL+$');
+
+	for ( i = 0 ; i < length ; i++ ) {
+		char = sentence[i];
+		if (unicodeword.test(char)) {
+			numAlpha++;
+			if (!validator.isUppercase(char)) {
+				return false;
+			}
+		}
+	}
+
+	return numAlpha !== 0;
 };
 
 Bob.prototype.sanitize = function(sentence) {
