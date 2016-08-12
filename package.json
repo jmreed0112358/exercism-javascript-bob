@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jmreed0112358/exercism-javascript-bob/issues"
   },
-  "homepage": "https://github.com/jmreed0112358/exercism-javascript-bob#readme"
+  "homepage": "https://github.com/jmreed0112358/exercism-javascript-bob#readme",
+  "dependencies": {
+    "validator": "^5.5.0"
+  }
 }
