@@ -1,0 +1,19 @@
+{
+  "name": "bob",
+  "version": "0.0.1",
+  "description": "Exercism: javascript solution for bob problem",
+  "main": "bob.js",
+  "scripts": {
+    "test": "jasmine-node bob.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jmreed0112358/exercism-javascript-bob.git"
+  },
+  "author": "Jeremy M. Reed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jmreed0112358/exercism-javascript-bob/issues"
+  },
+  "homepage": "https://github.com/jmreed0112358/exercism-javascript-bob#readme"
+}
