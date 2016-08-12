@@ -1,7 +1,4 @@
-//
-// This is only a SKELETON file for the "Bob" exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
+var validator = require('validator');
 
 var NotImplementedException = require('./exceptions/NotImplementedException.js');
 var InvalidParameterException = require('./exceptions/InvalidParameterException.js');
@@ -11,6 +8,7 @@ const QUESTION_RESPONSE = 'Sure';
 const YELLING_RESPONSE = 'Whoa, chill out!';
 const SILENCE_RESPONSE = 'Fine. Be that way!';
 const DEFAULT_RESPONSE = 'Whatever.';
+const BLACKLIST_REGEX = '\\[`~@#\\$%\\^&\\*\\\\\(\\)_\\-+=\\|\\\}\\]\\{\\[:\;\"\'<,>./\\]';
 
 var Bob = function() {};
 
@@ -64,7 +62,7 @@ Bob.prototype.isYelling = function(sentence) {
 };
 
 Bob.prototype.sanitize = function(sentence) {
-	throw new NotImplementedException();
+	return validator.blacklist(validator.trim(sentence), BLACKLIST_REGEX);
 };
 
 module.exports = Bob;
