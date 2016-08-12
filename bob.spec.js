@@ -2,7 +2,7 @@ var Bob = require('./bob.js');
 var NotImplementedException = require('./exceptions/NotImplementedException.js');
 var InvalidParameterException = require('./exceptions/InvalidParameterException.js');
 
-describe('Bob', function() {
+xdescribe('Bob', function() {
   var bob = new Bob();
 
   it('throws exception when given junk input.', function() {
@@ -107,5 +107,29 @@ describe('Bob', function() {
   it('prolonged silence', function () {
     var result = bob.hey('   ');
     expect(result).toEqual('Fine. Be that way!');
+  });
+});
+
+describe('Helper functions', function() {
+  var bob = new Bob();
+
+  it('sanitizes strings properly', function() {
+    var result = bob.sanitize('  Foo Bar  ');
+    expect(result).toEqual('Foo Bar');
+  });
+
+  it('sanitizes strings with symbols properly', function() {
+    var result = bob.sanitize(' Foo &&&*$($))#_@_@(*$ !!??!!  ');
+    expect(result).toEqual('Foo  !!??!!');
+  });
+
+  it('sanitizes strings with unicode characters properly', function() {
+    var result = bob.sanitize('Iñtërnâtiônàlizætiøn☃💩');
+    expect(result).toEqual('Iñtërnâtiônàlizætiøn☃💩');
+  });
+
+  it('returns empty string when given string with all blacklisted chars', function() {
+    var result = bob.sanitize('`~@#$%^&*\(\)_-+=|\\\}\]\{\[:\;\"\'<,>./');
+    expect(result).toEqual('');
   });
 });
