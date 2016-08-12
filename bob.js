@@ -10,20 +10,53 @@ var InvalidParameterException = require('./exceptions/InvalidParameterException.
 const QUESTION_RESPONSE = 'Sure';
 const YELLING_RESPONSE = 'Whoa, chill out!';
 const SILENCE_RESPONSE = 'Fine. Be that way!';
-const allResponse = 'Whatever.';
+const DEFAULT_RESPONSE = 'Whatever.';
 
 var Bob = function() {};
 
 Bob.prototype.hey = function(input) {
-	throw new NotImplementedException();
+	if ( typeof input !== 'string') {
+		throw new InvalidParameterException('This function takes a single string.');
+	}
+
+	if ( this.isEmptyOrAllSpaces(input)) {
+		return SILENCE_RESPONSE;
+	} else if ( this.isYelling(input)) {
+		return YELLING_RESPONSE;
+	} else if ( this.isQuestion(input)) {
+		return QUESTION_RESPONSE
+	} else {
+		return DEFAULT_RESPONSE;
+	}
 };
 
 Bob.prototype.isEmptyOrAllSpaces = function(sentence) {
-	throw new NotImplementedException();
+	var length = 0,
+		i = 0;
+
+	length = sentence.length;
+	if (length == 0) {
+		return true;
+	}
+
+	for ( i = 0 ; i < length ; i++ ) {
+		if (sentence[i] != ' ') {
+			return false;
+		}
+	}
+	return true;
 };
 
 Bob.prototype.isQuestion = function(sentence) {
-	throw new NotImplementedException();
+	var length = 0,
+		i = 0;
+
+	length = string.length;
+	if (length === 0) {
+		return false;
+	}
+
+	return sentence[length - 1] === '?';
 };
 
 Bob.prototype.isYelling = function(sentence) {
